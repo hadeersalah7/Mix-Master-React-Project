@@ -4,6 +4,7 @@ const App = () => {
   const router = createBrowserRouter([
     {
       path: "/",
+      errorElement: <Error />,
       element: <HomeLayout />,
       children: [
         {

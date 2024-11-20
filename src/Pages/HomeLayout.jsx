@@ -5,10 +5,12 @@ import Navbar from '../components/Navbar'
 const HomeLayout = () => {
     return (
         <div>
-            <Navbar /> 
-            <Outlet />
+            <Navbar />
+            <section className='page'>
+                <Outlet />
+            </section>
         </div>
-        
+
     )
 }
 
