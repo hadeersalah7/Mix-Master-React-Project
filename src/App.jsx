@@ -15,7 +15,7 @@ const App = () => {
           element: <Landing />
         },
         {
-          path: "cocktail",
+          path: "cocktail/:id",
           element: <Cocktail />
         },
         {
