@@ -1,6 +1,16 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import { HomeLayout, About, Cocktail, Landing, Error, NewsLetter, SinglePageError } from "./Pages";
+import {
+  HomeLayout,
+  About,
+  Cocktail,
+  Landing,
+  Error,
+  NewsLetter,
+  SinglePageError,
+} from "./Pages";
 import { loader as landingLoader } from "./Pages/Landing";
+import { loader as cocktailLoader } from "./Pages/Cocktail";
+
 const App = () => {
   const router = createBrowserRouter([
     {
@@ -12,27 +22,29 @@ const App = () => {
           index: true,
           errorElement: <SinglePageError />,
           loader: landingLoader,
-          element: <Landing />
+          element: <Landing />,
         },
         {
           path: "cocktail/:id",
-          element: <Cocktail />
+          errorElement: <SinglePageError />,
+          loader: cocktailLoader,
+          element: <Cocktail />,
         },
         {
           path: "newsletter",
-          element: <NewsLetter />
+          element: <NewsLetter />,
         },
         {
           path: "about",
-          element: <About />
+          element: <About />,
         },
-      ]
+      ],
     },
     {
       path: "/Error",
-      element: <Error />
+      element: <Error />,
     },
-  ])
+  ]);
   return <RouterProvider router={router} />;
 };
 export default App;
