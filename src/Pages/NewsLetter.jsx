@@ -1,9 +1,84 @@
-import React from 'react'
+import React from "react";
+import { Form, redirect } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+const newsletterUrl = "https://www.course-api.com/cocktails-newsletter";
+
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  try {
+    const response = await axios.post(newsletterUrl, data);
+    toast.success(response.data.msg);
+    console.log(response);
+    return redirect("/");
+  } catch (error) {
+    console.error(error);
+    toast.error(error?.response?.data?.msg);
+    return error;
+  }
+};
 
 const NewsLetter = () => {
-    return (
-        <h1>NewsLetter</h1>
-    )
-}
+  return (
+    <Form className="form" method="POST">
+      <h3
+        style={{
+          textAlign: "center",
+          marginBottom: "2rem",
+        }}
+      >
+        our newsletter
+      </h3>
 
-export default NewsLetter
+      <div className="form-row">
+        <label htmlFor="name" className="form-label">
+          name
+        </label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          className="form-input"
+          required
+        />
+      </div>
+
+      <div className="form-row">
+        <label htmlFor="lastName" className="form-label">
+          lastName
+        </label>
+        <input
+          type="text"
+          name="lastName"
+          id="lastName"
+          className="form-input"
+          required
+        />
+      </div>
+
+      <div className="form-row">
+        <label htmlFor="email" className="form-label">
+          email
+        </label>
+        <input
+          type="text"
+          name="email"
+          id="email"
+          className="form-input"
+          defaultValue="test@test.com"
+          required
+        />
+      </div>
+      <button
+        type="submit"
+        className="btn btn-block"
+        style={{ marginTop: "0.5rem" }}
+      >
+        submit
+      </button>
+    </Form>
+  );
+};
+
+export default NewsLetter;
