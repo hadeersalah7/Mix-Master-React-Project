@@ -1,31 +1,31 @@
-import React from 'react'
-import CocktailCard from './CocktailCard'
-import Wrapper from '../assets/wrappers/CocktailList'
+import React from "react";
+import CocktailCard from "./CocktailCard";
+import Wrapper from "../assets/wrappers/CocktailList";
 
 const CocktailList = ({ drinks }) => {
-    if (!drinks) {
-        return <h4 style={{ textAlign: "center" }}>No matching Cocktail Found...</h4>
-    }
-    const formattedDrinks = drinks.map((item) => {
-        const { idDrink, strDrink, strDrinkThumb, strAlcoholic, strGlass } = item
-        return {
-            id: idDrink,
-            name: strDrink,
-            image: strDrinkThumb,
-            info: strAlcoholic,
-            glass: strGlass
-        }
-    })
+  if (!drinks) {
     return (
-        <Wrapper>
-            {formattedDrinks.map((item) => {
-                return <CocktailCard key={item.id} {...item} />
-            })}
-        </Wrapper>
+      <h4 style={{ textAlign: "center" }}>No matching Cocktail Found...</h4>
+    );
+  }
+  console.log("drinks----", drinks);
+  const formattedDrinks = drinks.map((item) => {
+    const { idDrink, strDrink, strDrinkThumb, strAlcoholic, strGlass } = item;
+    return {
+      id: idDrink,
+      name: strDrink,
+      image: strDrinkThumb,
+      info: strAlcoholic,
+      glass: strGlass,
+    };
+  });
+  return (
+    <Wrapper>
+      {formattedDrinks.map((item) => {
+        return <CocktailCard key={item.id} {...item} />;
+      })}
+    </Wrapper>
+  );
+};
 
-
-
-    )
-}
-
-export default CocktailList
+export default CocktailList;
